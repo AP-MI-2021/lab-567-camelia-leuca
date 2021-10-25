@@ -1,6 +1,6 @@
 def creeaza_rezervare(id, nume, clasa, pret, checkin):
 	"""
-	Creeaza un dictionar pentru o rezervare.
+	Creeaza un o lista pentru o rezervare.
 	:param id:string
 	:param nume:string
 	:param clasa:string
@@ -8,13 +8,8 @@ def creeaza_rezervare(id, nume, clasa, pret, checkin):
 	:param checkin:string
 	:return:un dictionar ce contine o rezervare
 	"""
-	return{
-		"id": id,
-		"nume": nume,
-		"clasa": clasa,
-		"pret": pret,
-		"checkin": checkin
-	}
+	rezervare = [id, nume, clasa, pret, checkin]
+	return rezervare
 
 
 def get_id(rezervare):
@@ -23,7 +18,7 @@ def get_id(rezervare):
 	:param rezervare: dictionar ce retine o rezervare
 	:return: id-ul rezervarii
 	"""
-	return rezervare["id"]
+	return rezervare[0]
 
 
 def get_nume(rezervare):
@@ -32,7 +27,7 @@ def get_nume(rezervare):
 	:param rezervare: dictionar ce retine o rezervare
 	:return: numele pe care este facuta rezervarea
 	"""
-	return rezervare["nume"]
+	return rezervare[1]
 
 
 def get_clasa(rezervare):
@@ -41,7 +36,7 @@ def get_clasa(rezervare):
 	:param rezervare: dictionar ce retine o rezervare
 	:return: clasa rezervarii
 	"""
-	return rezervare["clasa"]
+	return rezervare[2]
 
 
 def get_pret(rezervare):
@@ -50,7 +45,7 @@ def get_pret(rezervare):
 	:param rezervare: dictionar ce retine o rezervare
 	:return: pretul rezervarii
 	"""
-	return rezervare["pret"]
+	return rezervare[3]
 
 
 def get_checkin(rezervare):
@@ -59,7 +54,7 @@ def get_checkin(rezervare):
 	:param rezervare: dictionar ce retine o rezervare
 	:return: check-in-ul rezervarii
 	"""
-	return rezervare["checkin"]
+	return rezervare[4]
 
 
 def to_string(rezervare):
