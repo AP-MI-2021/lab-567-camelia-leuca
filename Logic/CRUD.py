@@ -1,4 +1,4 @@
-from Domain.rezervare import creeaza_rezervare, get_id
+from Domain.rezervare import creeaza_rezervare, get_id, get_pret
 
 
 def adauga_rezervare(id, nume, clasa, pret, checkin, lista):
