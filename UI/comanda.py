@@ -28,18 +28,15 @@ def comanda(lista):
                         lista = adauga_rezervare(comanda[1], comanda[2], comanda[3], comanda[4], comanda[5], lista)
                     except ValueError as ve:
                         print("Eroare {}".format(ve))
-                        return lista
                 elif comanda[0] == "delete":
                     try:
                         lista = sterge_rezervare(comanda[1], lista)
                     except ValueError as ve:
                         print("Eroare {}".format(ve))
-                        return lista
                 elif comanda[0] == "update":
                     try:
                         lista = modifica_rezervare(comanda[1], comanda[2], comanda[3], comanda[4], comanda[5], lista)
                     except ValueError as ve:
                         print("Eroare {}".format(ve))
-                        return lista
                 else:
                     print("Comanda gresita!")
