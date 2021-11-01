@@ -18,9 +18,12 @@ def test_sterge_rezervare():
     lista = adauga_rezervare("1", "nume", "business", 4000, "da", lista)
     lista = adauga_rezervare("2", "Nume", "economy", 1000, "nu", lista)
     lista = sterge_rezervare("1", lista)
-    lista = sterge_rezervare("3", lista)
-    assert get_by_id("1", lista) is None
-    assert get_by_id("2", lista) is not None
+    try:
+        lista = sterge_rezervare("1", lista)
+        assert False
+    except ValueError:
+        assert get_by_id("1", lista) is None
+        assert get_by_id("2", lista) is not None
 
 
 def test_modifica_rezervare():
