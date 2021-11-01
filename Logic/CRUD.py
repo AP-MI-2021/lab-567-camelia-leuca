@@ -14,6 +14,14 @@ def adauga_rezervare(id, nume, clasa, pret, checkin, lista):
 	"""
 	if get_by_id(id, lista) is not None:
 		raise ValueError("Id-ul exista deja!")
+	if pret < 0:
+		raise ValueError("Pretul trebuie sa fie un numar pozitiv!")
+	if nume is None:
+		raise ValueError("Numele trebuie completat!")
+	if checkin != "da" and checkin != "nu":
+		raise ValueError("Check-in-ul trebuie completat cu da sau nu!")
+	if clasa != "economy" and clasa != "economy plus" and clasa != "business":
+		raise ValueError("Clasa data nu exista!")
 	rezervare = creeaza_rezervare(id, nume, clasa, pret, checkin)
 	return lista + [rezervare]
 
@@ -56,6 +64,14 @@ def modifica_rezervare(id, nume, clasa, pret, checkin, lista):
 	"""
 	if get_by_id(id, lista) is None:
 		raise ValueError("Id-ul dat nu exista!")
+	if pret < 0:
+		raise ValueError("Pretul trebuie sa fie un numar pozitiv!")
+	if nume is None:
+		raise ValueError("Numele trebuie completat!")
+	if checkin != "da" and checkin != "nu":
+		raise ValueError("Check-in-ul trebuie completat cu da sau nu!")
+	if clasa != "economy" and clasa != "economy plus" and clasa != "business":
+		raise ValueError("Clasa data nu exista!")
 	lista_noua = []
 	for rezervare in lista:
 		if get_id(rezervare) == id:

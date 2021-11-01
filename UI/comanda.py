@@ -10,7 +10,7 @@ def meniu_comanda():
     print("Iesire: stop")
 
 
-def comanda(lista):
+def comanda_meniu(lista):
     while True:
         string = input()
         if string == "help":
@@ -25,6 +25,7 @@ def comanda(lista):
                 comanda = elemente.split(",")
                 if comanda[0] == "add":
                     try:
+                        comanda[4] = int(comanda[4])
                         lista = adauga_rezervare(comanda[1], comanda[2], comanda[3], comanda[4], comanda[5], lista)
                     except ValueError as ve:
                         print("Eroare {}".format(ve))
@@ -35,6 +36,7 @@ def comanda(lista):
                         print("Eroare {}".format(ve))
                 elif comanda[0] == "update":
                     try:
+                        comanda[4] = int(comanda[4])
                         lista = modifica_rezervare(comanda[1], comanda[2], comanda[3], comanda[4], comanda[5], lista)
                     except ValueError as ve:
                         print("Eroare {}".format(ve))

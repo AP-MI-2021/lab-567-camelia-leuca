@@ -5,7 +5,7 @@ from Logic.CRUD import adauga_rezervare, get_by_id, sterge_rezervare, modifica_r
 def test_adauga_rezervare():
     lista = []
     lista = adauga_rezervare("1", "nume", "business", 4000, "da", lista)
-    assert len(lista) == 1
+    assert get_by_id("1", lista) is not None
     assert get_id(get_by_id("1", lista)) == "1"
     assert get_nume(get_by_id("1", lista)) == "nume"
     assert get_clasa(get_by_id("1", lista)) == "business"
@@ -18,19 +18,14 @@ def test_sterge_rezervare():
     lista = adauga_rezervare("1", "nume", "business", 4000, "da", lista)
     lista = adauga_rezervare("2", "Nume", "economy", 1000, "nu", lista)
     lista = sterge_rezervare("1", lista)
-    try:
-        lista = sterge_rezervare("1", lista)
-        assert False
-    except ValueError:
-        assert get_by_id("1", lista) is None
-        assert get_by_id("2", lista) is not None
+    assert get_by_id("1", lista) is None
+    assert get_by_id("2", lista) is not None
 
 
 def test_modifica_rezervare():
     lista = []
     lista = adauga_rezervare("1", "nume", "business", 4000, "da", lista)
     lista = adauga_rezervare("2", "Nume", "economy", 1000, "nu", lista)
-
     lista = modifica_rezervare("2", "Nume", "business", 4000, "nu", lista)
     rezervare_updatata = get_by_id("2", lista)
     assert get_id(rezervare_updatata) == "2"
