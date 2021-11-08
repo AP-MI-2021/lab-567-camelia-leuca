@@ -1,4 +1,4 @@
-from Domain.rezervare import creeaza_rezervare, get_id, get_pret
+from Domain.rezervare import creeaza_rezervare, get_id
 
 
 def adauga_rezervare(id, nume, clasa, pret, checkin, lista):
@@ -12,16 +12,24 @@ def adauga_rezervare(id, nume, clasa, pret, checkin, lista):
 	:param lista: lista de rezervari
 	:return: lista continand vechile rezervari si noua rezervare
 	"""
-	if get_by_id(id, lista) is not None:
-		raise ValueError("Id-ul exista deja!")
-	if pret < 0:
-		raise ValueError("Pretul trebuie sa fie un numar pozitiv!")
+	if id is None:
+		raise ValueError("Id-ul trebuie completat!")
 	if nume is None:
 		raise ValueError("Numele trebuie completat!")
-	if checkin != "da" and checkin != "nu":
-		raise ValueError("Check-in-ul trebuie completat cu da sau nu!")
+	if clasa is None:
+		raise ValueError("Clasa trebuie completata!")
+	if pret is None:
+		raise ValueError("Pretul trebuie completat!")
+	if checkin is None:
+		raise ValueError("Check-in-ul trebuie completat!")
+	if get_by_id(id, lista) is not None:
+		raise ValueError("Id-ul exista deja!")
 	if clasa != "economy" and clasa != "economy plus" and clasa != "business":
 		raise ValueError("Clasa data nu exista!")
+	if pret < 0:
+		raise ValueError("Pretul trebuie sa fie un numar pozitiv!")
+	if checkin != "da" and checkin != "nu":
+		raise ValueError("Check-in-ul trebuie completat cu da sau nu!")
 	rezervare = creeaza_rezervare(id, nume, clasa, pret, checkin)
 	return lista + [rezervare]
 
@@ -46,6 +54,8 @@ def sterge_rezervare(id, lista):
 	:param lista: lista de rezervari
 	:return:
 	"""
+	if id is None:
+		raise ValueError("Id-ul trebuie completat!")
 	if get_by_id(id, lista) is None:
 		raise ValueError("Id-ul dat nu exista!")
 	return [rezervare for rezervare in lista if get_id(rezervare) != id]
@@ -62,16 +72,24 @@ def modifica_rezervare(id, nume, clasa, pret, checkin, lista):
 	:param lista: lista de rezervari
 	:return: lista modificata
 	"""
+	if id is None:
+		raise ValueError("Id-ul trebuie completat!")
 	if get_by_id(id, lista) is None:
 		raise ValueError("Id-ul dat nu exista!")
-	if pret < 0:
-		raise ValueError("Pretul trebuie sa fie un numar pozitiv!")
 	if nume is None:
 		raise ValueError("Numele trebuie completat!")
-	if checkin != "da" and checkin != "nu":
-		raise ValueError("Check-in-ul trebuie completat cu da sau nu!")
+	if clasa is None:
+		raise ValueError("Clasa trebuie completata!")
+	if pret is None:
+		raise ValueError("Pretul trebuie completat!")
+	if checkin is None:
+		raise ValueError("Check-in-ul trebuie completat!")
 	if clasa != "economy" and clasa != "economy plus" and clasa != "business":
 		raise ValueError("Clasa data nu exista!")
+	if pret < 0:
+		raise ValueError("Pretul trebuie sa fie un numar pozitiv!")
+	if checkin != "da" and checkin != "nu":
+		raise ValueError("Check-in-ul trebuie completat cu da sau nu!")
 	lista_noua = []
 	for rezervare in lista:
 		if get_id(rezervare) == id:

@@ -15,19 +15,19 @@ def comanda_meniu(lista):
         string = input()
         if string == "help":
             meniu_comanda()
-        elif string == "showall":
-            show_all(lista)
         elif string == "stop":
             break
         else:
             comenzi = string.split(";")
             for elemente in comenzi:
                 comanda = elemente.split(",")
-                if comanda[0] == "add":
+                if comanda[0] == "showall":
+                    show_all(lista)
+                elif comanda[0] == "add":
                     try:
-                        comanda[4] = int(comanda[4])
-                        lista = adauga_rezervare(comanda[1], comanda[2], comanda[3], comanda[4], comanda[5], lista)
-                    except ValueError as ve:
+                        lista = adauga_rezervare(comanda[1], comanda[2], comanda[3], float(comanda[4]), comanda[5],
+                                                 lista)
+                    except Exception as ve:
                         print("Eroare {}".format(ve))
                 elif comanda[0] == "delete":
                     try:
@@ -36,9 +36,9 @@ def comanda_meniu(lista):
                         print("Eroare {}".format(ve))
                 elif comanda[0] == "update":
                     try:
-                        comanda[4] = int(comanda[4])
-                        lista = modifica_rezervare(comanda[1], comanda[2], comanda[3], comanda[4], comanda[5], lista)
-                    except ValueError as ve:
+                        lista = modifica_rezervare(comanda[1], comanda[2], comanda[3], float(comanda[4]), comanda[5],
+                                                   lista)
+                    except Exception as ve:
                         print("Eroare {}".format(ve))
                 else:
                     print("Comanda gresita!")
